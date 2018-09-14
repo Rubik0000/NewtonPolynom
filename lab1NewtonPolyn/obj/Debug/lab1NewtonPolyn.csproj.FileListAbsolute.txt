@@ -1,0 +1,10 @@
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\bin\Debug\lab1NewtonPolyn.exe.config
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\bin\Debug\lab1NewtonPolyn.exe
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\bin\Debug\lab1NewtonPolyn.pdb
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\obj\Debug\lab1NewtonPolyn.csprojResolveAssemblyReference.cache
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\obj\Debug\lab1NewtonPolyn.MainForm.resources
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\obj\Debug\lab1NewtonPolyn.Properties.Resources.resources
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\obj\Debug\lab1NewtonPolyn.csproj.GenerateResource.Cache
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\obj\Debug\lab1NewtonPolyn.csproj.CoreCompileInputs.cache
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\obj\Debug\lab1NewtonPolyn.exe
+D:\Google disc\Универ\ВМ\lab1NewtonPolyn\lab1NewtonPolyn\obj\Debug\lab1NewtonPolyn.pdb
