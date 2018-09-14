@@ -13,7 +13,7 @@ namespace lab1NewtonPolyn
 {
     public partial class MainForm : Form
     {
-        private readonly double eps = 0.01;
+        private readonly double eps = 0.001;
 
         private IFunction _func;
 
@@ -23,22 +23,74 @@ namespace lab1NewtonPolyn
             _func = new Function(x => 1.0 / (5 + 9 * x * x));
         }
 
-        private void DrawFunc()
+        private void DrawFunc(Chart chrt, IFunction func, 
+            double a, 
+            double b, 
+            string name)
         {
-            Series grp = new Series("1/(5+9*x^2)");
+            if (chrt.Series.IndexOf(name) != -1)
+                chrt.Series.Remove(chrt.Series[name]);
+            Series grp = new Series(name);
             grp.ChartType = SeriesChartType.Line;
-            grp.ChartArea = "func";
-            for (double x = Convert.ToDouble(nmrcLeft.Value);
-                x <= Convert.ToDouble(nmrcRight.Value); x += this.eps)
+            grp.ChartArea = "main";
+            for (double x = a + eps; x <= b - eps; x += this.eps)
             {
-                grp.Points.AddXY(x, this._func.Caclulate(x));
+                grp.Points.AddXY(x, func.Caclulate(x));
             }
-            chrtFunc.Series.Add(grp);
+            chrt.Series.Add(grp);
+        }
+
+        private void DrawFunc(Chart chrt, IFunction func, string name)
+        {
+            double a = Convert.ToDouble(nmrcLeft.Value);
+            double b = Convert.ToDouble(nmrcRight.Value);
+            this.DrawFunc(chrt, func, a, b, name);
         }
 
         private void btnCalcClick(object sender, EventArgs e)
         {
-            this.DrawFunc();
+            this.DrawFunc(chrtFunc, this._func, "func");
+
+            double a = Convert.ToDouble(nmrcLeft.Value);
+            double b = Convert.ToDouble(nmrcRight.Value);
+            int n = Convert.ToInt32(nmrcPowerPol.Value);
+            double[] nodes = rdBtnEven.Checked ?
+                EvenSplitting(a, b, n) : ChebyshevsSplitting(a, b, n);
+   
+            var pol = new NewtonPol(nodes, this._func);
+            this.DrawFunc(chrtFunc, pol, "polynom");
+            this.DrawFunc(
+                chrtError, 
+                new Function(
+                    x => Math.Abs(this._func.Caclulate(x) - pol.Caclulate(x))), 
+                "error");
+        }
+
+        private double[] EvenSplitting(double a, double b, int n)
+        {
+            double[] nodes = new double[n + 1];
+            for (int i = 0; i < nodes.Length; ++i)
+            {
+                nodes[i] = a + (b - a) * i / n;
+            }
+            return nodes;
+        }
+
+        private double[] ChebyshevsSplitting(double a, double b, int n)
+        {
+            double[] nodes = new double[n + 1];
+            for (int i = 0; i < nodes.Length; ++i)
+            {
+                nodes[i] = (a + b) / 2 + (b - a) / 2 *
+                    Math.Cos((double)(2 * i + 1) / (2 * n + 2) * Math.PI);
+            }
+            return nodes;
+        }
+
+        private void ChangeEvent(object sender, EventArgs e)
+        {
+            chrtFunc.Series.Clear();
+            chrtError.Series.Clear();
         }
     }
 }
