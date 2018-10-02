@@ -110,7 +110,6 @@
             0,
             0,
             -2147483648});
-            this.nmrcLeft.ValueChanged += ChangeEvent;
             // 
             // nmrcRight
             // 
@@ -139,7 +138,6 @@
             0,
             0,
             0});
-            this.nmrcRight.ValueChanged += ChangeEvent;
             // 
             // lblPowerPol
             // 
@@ -156,7 +154,6 @@
             this.nmrcPowerPol.Name = "nmrcPowerPol";
             this.nmrcPowerPol.Size = new System.Drawing.Size(67, 20);
             this.nmrcPowerPol.TabIndex = 6;
-            this.nmrcPowerPol.ValueChanged += ChangeEvent;
             // 
             // btnCalc
             // 
@@ -192,7 +189,6 @@
             this.rdBtnEven.TabStop = true;
             this.rdBtnEven.Text = "Равномерное разбиение";
             this.rdBtnEven.UseVisualStyleBackColor = true;
-            this.rdBtnEven.CheckedChanged += ChangeEvent;
             // 
             // rdBtnCheb
             // 

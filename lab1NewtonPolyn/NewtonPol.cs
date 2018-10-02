@@ -6,26 +6,42 @@ using System.Threading.Tasks;
 
 namespace lab1NewtonPolyn
 {
+    /// <summary>
+    /// Provides a Newton's polygon
+    /// </summary>
     class NewtonPol : IFunction
     {
-        private double[] _nodes;
-        private IFunction _func;
+        /// <summary>A table function</summary>
+        private FunctionsTable _table;
+
+        /// <summary>Devided differences</summary>
         private double[] _devidedDif;
 
-        public NewtonPol(double[] nodes, IFunction func)
+        /// <summary>
+        /// A constructor
+        /// </summary>
+        /// <param name="table">
+        /// A table function, on which a polynom will be created
+        /// </param>
+        public NewtonPol(FunctionsTable table)
         {
-            this._nodes = nodes;
-            this._func = func;
-            this._devidedDif = new double[nodes.Length];
-            for (int i = 0; i < nodes.Length; ++i)
+            _table = table;
+            this._devidedDif = new double[table.Length];
+            for (int i = 0; i < table.Length; ++i)
             {
-                this._devidedDif[i] = this.GetDevidedDiff(nodes, i); 
+                this._devidedDif[i] = this.GetDevidedDiff(table, i); 
             }
         }
 
-        protected double GetDevidedDiff(double[] nodes, int power)
+        /// <summary>
+        /// Perfroms a devided difference
+        /// </summary>
+        /// <param name="table">A table function</param>
+        /// <param name="power">A power of the difference</param>
+        /// <returns></returns>
+        protected double GetDevidedDiff(FunctionsTable table, int power)
         {
-            if (nodes.Length <= power)
+            if (table.Length <= power)
                 throw new Exception("The power is more then number of nodes");
             double result = 0;
             for (int i = 0; i <= power; ++i)
@@ -34,13 +50,14 @@ namespace lab1NewtonPolyn
                 for (int j = 0; j <= power; ++j)
                 {
                     if (i != j)
-                        mult *= (nodes[i] - nodes[j]);
+                        mult *= (table.X[i] - table.X[j]);
                 }
-                result += this._func.Caclulate(nodes[i]) / mult;
+                result += table.Y[i] / mult;
             }
             return result;
         }
 
+        /// <summary>Override</summary>
         public double Caclulate(double arg)
         {
             double result = 0;
@@ -49,7 +66,7 @@ namespace lab1NewtonPolyn
                 double slag = this._devidedDif[i];
                 for (int j = 0; j < i; ++j)
                 {
-                    slag *= (arg - this._nodes[j]);
+                    slag *= (arg - _table.X[j]);
                 }
                 result += slag;
             }

@@ -7,22 +7,15 @@ using System.Threading.Tasks;
 namespace lab1NewtonPolyn
 {
     /// <summary>
-    /// 
+    /// A class for a pure math function
     /// </summary>
-    public interface IFunction
-    {
-        double Caclulate(double arg);
-    }
-
     public class Function : IFunction
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary>A function's delegate</summary>
         private Func<double, double> _func;
 
         /// <summary>
-        /// Constructor
+        /// A constructor
         /// </summary>
         /// <param name="func">A function need to be performed</param>
         public Function(Func<double, double> func)
@@ -35,9 +28,6 @@ namespace lab1NewtonPolyn
         /// </summary>
         /// <param name="arg">An argument of the function</param>
         /// <returns>The value of the function</returns>
-        public double Caclulate(double arg)
-        {
-            return _func(arg);
-        }
+        public double Caclulate(double arg) => _func(arg);
     }
 }
